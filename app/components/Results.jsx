@@ -57,7 +57,7 @@ Card.propTypes = {
     html_url: PropTypes.string.isRequired,
     followers: PropTypes.number.isRequired,
     following: PropTypes.number.isRequired,
-    repositories: PropTypes.number,
+    public_repos: PropTypes.number,
     location: PropTypes.string,
     company: PropTypes.string,
   }).isRequired,

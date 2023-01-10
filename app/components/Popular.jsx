@@ -1,5 +1,5 @@
 import * as React from "react";
-import PropTypes from 'prop-types'
+import PropTypes from "prop-types";
 import { fetchPopularRepos } from "../utils/api";
 import Table from "./Table";
 
@@ -22,29 +22,24 @@ function LanguagesNav({ selected, onUpdateLanguage }) {
 
 LanguagesNav.propTypes = {
   selected: PropTypes.string.isRequired,
-  onUpdateLanguage: PropTypes.func.isRequired
-}
+  onUpdateLanguage: PropTypes.func.isRequired,
+};
 
 export default class Popular extends React.Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      selectedLanguage: "All",
-      repos: null,
-      error: null
-    };
-
-    this.updateLanguage = this.updateLanguage.bind(this);
+  state = {
+    selectedLanguage: "All",
+    repos: null,
+    error: null,
+  };
+  componentDidMount() {
+    this.updateLanguage(this.state.selectedLanguage);
   }
-  componentDidMount(){
-    this.updateLanguage(this.state.selectedLanguage)
-  }
-  updateLanguage(selectedLanguage) {
+  updateLanguage = (selectedLanguage) => {
     this.setState({
       selectedLanguage,
-      error: null
+      error: null,
     });
+
     fetchPopularRepos(selectedLanguage)
       .then((repos) =>
         this.setState({
@@ -59,7 +54,7 @@ export default class Popular extends React.Component {
           error: `There was an error fetching the repositories`,
         });
       });
-  }
+  };
   render() {
     const { selectedLanguage, repos, error } = this.state;
 
@@ -75,7 +70,7 @@ export default class Popular extends React.Component {
 
         {error && <p className="text-center error">{error}</p>}
 
-        {repos && <Table repos={repos}/>}
+        {repos && <Table repos={repos} />}
       </main>
     );
   }

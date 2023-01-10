@@ -2,7 +2,7 @@ import * as React from "react";
 import { battle } from "../utils/api";
 import PropTypes from "prop-types";
 import Loading from "./Loading";
-import withSearchParams from "./withSearchPrams";
+import withSearchParams from "./withSearchPrams"
 import { Link } from "react-router-dom";
 
 function Card({ profile }) {
@@ -67,16 +67,12 @@ Card.propTypes = {
 };
 
 class Results extends React.Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      winner: null,
-      loser: null,
-      error: null,
-      loading: true,
-    };
-  }
+  state = {
+    winner: null,
+    loser: null,
+    error: null,
+    loading: true,
+  };
   componentDidMount() {
     const sp = this.props.router.searchParams;
     const playerOne = sp.get("playerOne");
